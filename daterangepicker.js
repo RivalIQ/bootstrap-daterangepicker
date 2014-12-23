@@ -307,11 +307,11 @@
             //if no start/end dates set, check if an input element contains initial values
             if (typeof options.startDate === 'undefined' && typeof options.endDate === 'undefined') {
                 if ($(this.element).is('input[type=text]')) {
-                    var val = $(this.element).val(), 
+                    var val = $(this.element).val(),
                         split = val.split(this.separator);
-                    
+
                     start = end = null;
-                    
+
                     if (split.length == 2) {
                         start = moment(split[0], this.format);
                         end = moment(split[1], this.format);
@@ -452,7 +452,7 @@
         },
 
         toggleSide: function() {
-            if (this.side == 'left') {
+            if (this.side === 'left') {
                 this.side = 'right';
                 this.container.find('input[name=daterangepicker_start]').removeClass('inputfocus');
                 this.container.find('input[name=daterangepicker_end]').addClass('inputfocus');
@@ -772,7 +772,7 @@
             var col = title.substr(3, 1);
             var cal = $(e.target).parents('.calendar');
 
-            if (this.side == 'left') {
+            if (this.side === 'left') {
                 this.container.find('input[name=daterangepicker_start]').val(this.leftCalendar.calendar[row][col].format(this.format));
             } else {
                 this.container.find('input[name=daterangepicker_end]').val(this.rightCalendar.calendar[row][col].format(this.format));
@@ -922,7 +922,7 @@
         },
 
         updateCalendars: function (side) {
-            if (side == 'right') {
+            if (side === 'right') {
                 var leftCalendarDate = this.leftCalendar.month.clone();
                 leftCalendarDate.add(-1, "months");
                 this.leftCalendar.calendar = this.buildCalendar(leftCalendarDate.month(), leftCalendarDate.year(), leftCalendarDate.hour(), leftCalendarDate.minute(), leftCalendarDate.second(), 'left');
@@ -1059,7 +1059,7 @@
             if (this.showWeekNumbers)
                 html += '<th></th>';
 
-            if (side == "left" && (!minDate || minDate.isBefore(calendar.firstDay))) {
+            if (side === "left" && (!minDate || minDate.isBefore(calendar.firstDay))) {
                 html += '<th class="prev available"><i class="fa fa-arrow-left icon-arrow-left"></i></th>';
             } else {
                 html += '<th></th>';
@@ -1072,7 +1072,7 @@
             }
 
             html += '<th colspan="5" class="month">' + dateHtml + '</th>';
-            if (side == "right" && (!maxDate || maxDate.isAfter(calendar.lastDay))) {
+            if (side === "right" && (!maxDate || maxDate.isAfter(calendar.lastDay))) {
                 html += '<th class="next available"><i class="fa fa-arrow-right icon-arrow-right"></i></th>';
             } else {
                 html += '<th></th>';
@@ -1106,7 +1106,7 @@
 
                     if ((minDate && calendar[row][col].isBefore(minDate, 'day')) || (maxDate && calendar[row][col].isAfter(maxDate, 'day'))) {
                         cname = ' off disabled ';
-                    } else if (calendar[row][col].format('YYYY-MM-DD') == startDate.format('YYYY-MM-DD') || calendar[row][col].format('YYYY-MM-DD') == endDate.format('YYYY-MM-DD')) {
+                    } else if (calendar[row][col].format('YYYY-MM-DD') === startDate.format('YYYY-MM-DD') || calendar[row][col].format('YYYY-MM-DD') === endDate.format('YYYY-MM-DD')) {
                         cname += ' active ';
                         if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD')) {
                             cname += ' start-date ';
