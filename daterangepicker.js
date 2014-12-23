@@ -466,7 +466,7 @@
 
         setStartDate: function(startDate) {
             if (typeof startDate === 'string')
-                this.startDate = moment(startDate, this.format);
+                this.startDate = moment(startDate, this.format).zone(this.timeZone);
 
             if (typeof startDate === 'object')
                 this.startDate = moment(startDate);
@@ -1060,7 +1060,7 @@
                 html += '<th></th>';
 
             if (side == "left" && (!minDate || minDate.isBefore(calendar.firstDay))) {
-                html += '<th class="prev available"><i class="fa fa-arrow-left icon-arrow-left fa fa-arrow-left"></i></th>';
+                html += '<th class="prev available"><i class="fa fa-arrow-left icon-arrow-left"></i></th>';
             } else {
                 html += '<th></th>';
             }
@@ -1073,7 +1073,7 @@
 
             html += '<th colspan="5" class="month">' + dateHtml + '</th>';
             if (side == "right" && (!maxDate || maxDate.isAfter(calendar.lastDay))) {
-                html += '<th class="next available"><i class="fa fa-arrow-right icon-arrow-right fa fa-arro-arrow-right"></i></th>';
+                html += '<th class="next available"><i class="fa fa-arrow-right icon-arrow-right"></i></th>';
             } else {
                 html += '<th></th>';
             }
