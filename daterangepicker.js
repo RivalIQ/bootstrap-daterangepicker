@@ -102,6 +102,8 @@
         this.container.find('.ranges')
             .on('click.daterangepicker', 'button.applyBtn', $.proxy(this.clickApply, this))
             .on('click.daterangepicker', 'button.cancelBtn', $.proxy(this.clickCancel, this))
+            .on('click.daterangepicker', '.daterangepicker_start_input', $.proxy(this.chooseSide, this, 'left'))
+            .on('click.daterangepicker', '.daterangepicker_end_input', $.proxy(this.chooseSide, this, 'right'))
             .on('click.daterangepicker', '.daterangepicker_start_input,.daterangepicker_end_input', $.proxy(this.showCalendars, this))
             .on('change.daterangepicker', '.daterangepicker_start_input,.daterangepicker_end_input', $.proxy(this.inputsChanged, this))
             .on('keydown.daterangepicker', '.daterangepicker_start_input,.daterangepicker_end_input', $.proxy(this.inputsKeydown, this))
@@ -453,7 +455,15 @@
 
         toggleSide: function() {
             if (this.side === 'left') {
-                this.side = 'right';
+                this.chooseSide('right');
+            } else {
+                this.chooseSide('left');
+            }
+        },
+
+        chooseSide: function(side) {
+            if (side === 'right') {
+                this.side = 'right;'
                 this.container.find('input[name=daterangepicker_start]').removeClass('inputfocus');
                 this.container.find('input[name=daterangepicker_end]').addClass('inputfocus');
             } else {
