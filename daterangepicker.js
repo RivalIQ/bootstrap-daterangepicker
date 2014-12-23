@@ -933,8 +933,8 @@
                 this.leftCalendar.calendar = this.buildCalendar(this.leftCalendar.month.month(), this.leftCalendar.month.year(), this.leftCalendar.month.hour(), this.leftCalendar.month.minute(), this.leftCalendar.month.second(), 'left');
                 this.rightCalendar.calendar = this.buildCalendar(rightCalendarDate.month(), rightCalendarDate.year(), rightCalendarDate.hour(), rightCalendarDate.minute(), rightCalendarDate.second(), 'right');
             }
-            this.container.find('.calendar.left').empty().html(this.renderCalendar(this.leftCalendar.calendar, this.startDate, this.minDate, this.maxDate, 'left'));
-            this.container.find('.calendar.right').empty().html(this.renderCalendar(this.rightCalendar.calendar, this.endDate, this.singleDatePicker ? this.minDate : this.startDate, this.maxDate, 'right'));
+            this.container.find('.calendar.left').empty().html(this.renderCalendar(this.leftCalendar.calendar, this.startDate, this.endDate, this.minDate, this.maxDate, 'left'));
+            this.container.find('.calendar.right').empty().html(this.renderCalendar(this.rightCalendar.calendar, this.startDate, this.endDate, this.singleDatePicker ? this.minDate : this.startDate, this.maxDate, 'right'));
 
             this.container.find('.ranges li').removeClass('active');
             var customRange = true;
@@ -1048,7 +1048,7 @@
             return monthHtml + yearHtml;
         },
 
-        renderCalendar: function (calendar, selected, minDate, maxDate, side) {
+        renderCalendar: function (calendar, startDate, endDate, minDate, maxDate, side) {
 
             var html = '<div class="calendar-date">';
             html += '<table class="table-condensed">';
@@ -1106,7 +1106,7 @@
 
                     if ((minDate && calendar[row][col].isBefore(minDate, 'day')) || (maxDate && calendar[row][col].isAfter(maxDate, 'day'))) {
                         cname = ' off disabled ';
-                    } else if (calendar[row][col].format('YYYY-MM-DD') == selected.format('YYYY-MM-DD')) {
+                    } else if (calendar[row][col].format('YYYY-MM-DD') == startDate.format('YYYY-MM-DD') || calendar[row][col].format('YYYY-MM-DD') == endDate.format('YYYY-MM-DD')) {
                         cname += ' active ';
                         if (calendar[row][col].format('YYYY-MM-DD') == this.startDate.format('YYYY-MM-DD')) {
                             cname += ' start-date ';
